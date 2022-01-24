@@ -1,12 +1,15 @@
 package by.it.kanaplianikhomework;
 
 public class Sign {
+    private Console console;
 
     private String sign;
 
-    public Sign(String sign) {
+    public Sign(Console console) {
 
-        this.sign = sign;
+        this.console = console;
+        this.sign = "unknown";
+
     }
 
     public String firstArgName() {
@@ -39,7 +42,7 @@ public class Sign {
                 return "вычитаемое";
 
             default:
-                return "undefined";
+                return "Вы ввели не знак операции";
         }
     }
 
@@ -60,5 +63,19 @@ public class Sign {
             default:
                 return "Вы ввели не знак операции";
         }
+    }
+
+    public void scan() {
+        console.println("Введите знак операции: ");
+        String scannedSign = console.nextLine();
+        sign = scannedSign;
+    }
+
+    public boolean isIncorrect() {
+        if (!sign.equals("+") && !sign.equals("-") &&!sign.equals("*") && !sign.equals("/")) {
+            console.println("Это не знак операции!!!");
+            return true;
+        }
+        else return false;
     }
 }

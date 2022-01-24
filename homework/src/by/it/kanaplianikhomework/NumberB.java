@@ -1,26 +1,26 @@
 package by.it.kanaplianikhomework;
 
-import java.util.Scanner;
-
 public class NumberB {
     private boolean isParsingIncorrect;
     private double parseDiv2;
     private Sign sign;
+    private Console console;
 
-    public NumberB(String something) {
-        sign = new Sign(something);
+    public NumberB(Sign sign,Console console) {
+        this.sign = sign;
+        this.console = console;
+
     }
 
     public void scan() {
-        System.out.println("Введите " + sign.secondArgName() + ":");
-        Scanner scanner = new Scanner(System.in);
-        String somethingToDivide1 = scanner.nextLine();
+        console.println("Введите " + sign.secondArgName() + ":");
+        String somethingToDivide1 = console.nextLine();
 
         try {
             parseDiv2 = Double.parseDouble(somethingToDivide1);
-            Double d2 = new Double(parseDiv2);
+            Double d2 = parseDiv2;
             if (d2.isInfinite()) {
-                System.out.println("Данная программа не рассчитана для работы с очень большими цифрами");
+                console.println("Данная программа не рассчитана для работы с очень большими цифрами");
                 isParsingIncorrect = true;
                 return;
 
@@ -28,14 +28,14 @@ public class NumberB {
             }
             isParsingIncorrect = false;
         } catch (Exception exDiv2) {
-            System.out.println("Невозможно распарсить " + sign.secondArgName());
+            console.println("Невозможно распарсить " + sign.secondArgName());
             isParsingIncorrect = true;
         }
     }
 
     public boolean isIncorrect() {
         if (!isParsingIncorrect && parseDiv2 == 0) {
-            System.out.println("Нельзя делить на ноль");
+            console.println("Нельзя делить на ноль");
             return true;
         }
 
